@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fellesregnskap", "Fellesregnskap\Fellesregnskap.csproj", "{EC4629A2-2DBA-44A4-A98E-92E73B076EDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fellesregnskap.Tests", "Fellesregnskap.Tests\Fellesregnskap.Tests.csproj", "{CED39705-FF54-4D84-94E7-86F9CC8DD8B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4629A2-2DBA-44A4-A98E-92E73B076EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4629A2-2DBA-44A4-A98E-92E73B076EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4629A2-2DBA-44A4-A98E-92E73B076EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4629A2-2DBA-44A4-A98E-92E73B076EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED39705-FF54-4D84-94E7-86F9CC8DD8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED39705-FF54-4D84-94E7-86F9CC8DD8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED39705-FF54-4D84-94E7-86F9CC8DD8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED39705-FF54-4D84-94E7-86F9CC8DD8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
