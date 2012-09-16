@@ -1,4 +1,5 @@
-﻿using Fellesregnskap.Models.Home;
+﻿using Fellesregnskap.Models;
+using Fellesregnskap.Models.Home;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,10 @@ namespace Fellesregnskap.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
+            var participants = MongoAccessor.GetParticipants(/* middagsid */);
 
             return View();
         }
 
-        public ActionResult About()
-        {
-            var connectionstring = ConfigurationManager.AppSettings.Get("MONGOHQ_URL");
-            var database = MongoDatabase.Create(connectionstring);
-            var collection = database.GetCollection<Deltager>("Thingies");
-
-            collection.Insert(new Deltager { Navn = "Jonas" });
-
-            var deltagere = collection.FindAll();
-
-            return View();
-        }
     }
 }
