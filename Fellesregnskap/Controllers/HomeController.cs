@@ -14,11 +14,22 @@ namespace Fellesregnskap.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
             var participants = MongoAccessor.GetParticipants(/* middagsid */);
 
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(Participant participant)
+        {
+
+            return RedirectToAction("ParticipantCreated");
+        }
+
+        public PartialViewResult ParticipantsList()
+        {
+            var participants = new List<Participant>(); 
+            return PartialView("_ParticipantsList", participants);
+        }
     }
 }

@@ -1,8 +1,20 @@
-﻿@{
-    ViewBag.Title = "Deling av regninger i veita";
-}
+﻿@model  Fellesregnskap.Models.Home.Participant
 
-<h2>@ViewBag.Message</h2>
-<p>
-    Her skal vi dele regningeer
-</p>
+@Html.Action("ParticipantsList", "Home")
+
+@using (Html.BeginForm()) { 
+    @Html.ValidationSummary(true) 
+    <fieldset> 
+        <legend>Legg til deltager</legend> 
+        <div class="editor-label"> 
+            @Html.LabelFor(model => model.Navn) 
+        </div> 
+        <div class="editor-field"> 
+            @Html.TextBoxFor(model => model.Navn) 
+            @Html.ValidationMessageFor(model => model.Navn) 
+        </div> 
+        <p> 
+            <input type="submit" value="Send" /> 
+        </p> 
+    </fieldset> 
+}
