@@ -8,7 +8,14 @@ namespace Fellesregnskap.Models.Home
 {
     public class Participant
     {
-        public ObjectId Id { get; set; }
-        public string Navn { get; set; }
+        public ObjectId id { get; set; }
+        public String name { get; set; }
+
+        public Participant(String name)
+        {
+            this.name = name;
+        }
+            
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fellesregnskap.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -34,6 +35,8 @@ namespace Fellesregnskap
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            MongoAccessor.Connect();
 
             // Use LocalDB for Entity Framework by default
             Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
