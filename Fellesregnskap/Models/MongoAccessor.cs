@@ -13,24 +13,53 @@ namespace Fellesregnskap.Models
     {
         private static MongoDatabase database;
 
-        public static void AddReceipt(Receipt receipt)
+        public static ObjectId AddReceipt(Receipt receipt)
         {
             var RecCollection = database.GetCollection<Receipt>("Receipts");
             RecCollection.Insert(receipt);
+            AddParticipant(receipt.payer);
             foreach(Participant part in receipt.participants)
             {
                 AddParticipant(part);
             }
+            return receipt.id; //id autogenereres av mongodb
         }
 
-        public static void AddParticipant(Participant participant)
+        public static ObjectId AddParticipant(Participant participant)
         {
             var existingPart = GetParticipant(participant.name);
             if (existingPart == null)
             {
                 var collection = database.GetCollection<Participant>("Participants");
                 collection.Insert(participant);
+                return participant.id; //id autogenereres av mongodb
             }
+            return existingPart.id;
+        }
+
+        public static void AddParticipantToReceipt(Participant participant, Receipt receipt)
+        {
+            if (receipt.participants.Any(p => p.name == participant.name))
+            {
+                return;
+            }
+            receipt.participants.Add(participant);
+            AddParticipant(participant);
+            var collection = database.GetCollection<Receipt>("Receipts");
+            collection.Save(receipt);
+        }
+
+        public static void UpdateReceipt(Receipt receipt)
+        {
+            var collection = database.GetCollection<Receipt>("Receipts");
+            collection.Save(receipt);
+        }
+
+        public static void RemoveParticipantFromReceipt(Participant participant, Receipt receipt)
+        {
+            receipt.participants.Remove(participant);
+            var collection = database.GetCollection<Receipt>("Receipts");
+            collection.Save(receipt);
         }
 
         public static void RemoveReceipt(ObjectId receiptId)
@@ -72,6 +101,20 @@ namespace Fellesregnskap.Models
         {
             var collection = database.GetCollection<Participant>("Participants");
             return collection.FindAll().ToList();
+        }
+
+        public static List<Receipt> GetAllReceiptsForParticipantByMonth(Participant participant, int month)
+        {
+            var allReceipts = GetReceiptsByMonth(month);
+            return allReceipts.Where(receipt => receipt.participants.Any(p => p.name == participant.name)).ToList();
+        }
+
+        public static void PurgeDB()
+        {
+            var RecCollection = database.GetCollection<Receipt>("Receipts");
+            RecCollection.RemoveAll();
+            var PartCollection = database.GetCollection<Participant>("Participants");
+            PartCollection.RemoveAll();
         }
 
         internal static void Connect()

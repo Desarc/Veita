@@ -15,20 +15,30 @@ namespace Fellesregnskap.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
+            MongoAccessor.PurgeDB();
             var part = new Participant("Stig");
+            var part2 = new Participant("Magnus");
             //MongoAccessor.AddParticipant(part);
             var rec = new Receipt();
             rec.id = new MongoDB.Bson.ObjectId();
             rec.participants = new List<Participant>();
             rec.participants.Add(part);
-            MongoAccessor.AddReceipt(rec);
+            var testList = new List<Participant>();
+            testList.Add(part2);
+            var rec2 = new Receipt(50.0, "test", part, testList);
+            MongoAccessor.AddReceipt(rec2);
+            var rec3 = new Receipt(20.0, "test2", part, testList);
+            MongoAccessor.AddReceipt(rec3);
+            var testId = MongoAccessor.AddReceipt(rec);
             var testGetRec = MongoAccessor.GetReceipt(rec.id);
             var parts = testGetRec.participants;
+            var recForPart = MongoAccessor.GetAllReceiptsForParticipantByMonth(part2, 9);
 
+            
+            var testGetRecsByMonth = MongoAccessor.GetReceiptsByMonth(9);
             MongoAccessor.RemoveReceipt(rec.id);
             testGetRec = MongoAccessor.GetReceipt(rec.id);
             var testPart = MongoAccessor.GetParticipant("Stig");
-            var testGetRecsByMonth = MongoAccessor.GetReceiptsByMonth(9);
             //var testRec = testGetRecsByMonth.First<Receipt>();
             var testGetPart = MongoAccessor.GetAllParticipants();
             MongoAccessor.RemoveParticipant("Stig");
