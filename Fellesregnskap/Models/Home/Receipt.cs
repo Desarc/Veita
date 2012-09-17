@@ -15,19 +15,6 @@ namespace Fellesregnskap.Models.Home
         public int month { get; set; }
         public List<Participant> participants { get; set; }
 
-        public Receipt()
-        {
-            date = DateTime.Now;
-            month = date.Month;
-        }
-
-        public Receipt(double price, String description, Participant payer, List<Participant> participants) : this()
-        {
-            this.price = price;
-            this.description = description;
-            this.payer = payer;
-            this.participants = participants;
-        }
 
     }
 

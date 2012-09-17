@@ -7,7 +7,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 
-namespace Fellesregnskap.Models
+namespace Fellesregnskap.App_Code
 {
     public class MongoAccessor
     {
@@ -107,6 +107,12 @@ namespace Fellesregnskap.Models
         {
             var allReceipts = GetReceiptsByMonth(month);
             return allReceipts.Where(receipt => receipt.participants.Any(p => p.name == participant.name)).ToList();
+        }
+
+        public static List<Receipt> GetAllReceiptsForPayerByMonth(Participant payer, int month)
+        {
+            var allReceipts = GetReceiptsByMonth(month);
+            return allReceipts.Where(receipt => receipt.payer.name == payer.name).ToList();
         }
 
         public static void PurgeDB()
