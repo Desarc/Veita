@@ -1,3 +1,10 @@
 ﻿@model List<Fellesregnskap.Models.Home.Participant>
 
 Partial view
+<ul>
+@foreach (var item in Model)
+{
+    <li>@Html.Raw(item.name)</li>    
+}
+
+</ul>
