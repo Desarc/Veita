@@ -29,5 +29,19 @@ namespace Fellesregnskap.Controllers
             var participants = MongoAccessor.GetAllParticipants();
             return PartialView("_ParticipantsList", participants);
         }
+
+        private List<double> CreateSumVector(int month)
+        {
+            var sumVector = new List<double>();
+            var participants = MongoAccessor.GetAllParticipants();
+            foreach (Participant participant in participants)
+            {
+                var payerReceipts = MongoAccessor.GetAllReceiptsForPayerByMonth(participant, month);
+                var participantReceipts = MongoAccessor.GetAllReceiptsForParticipantByMonth(participant, month);
+                var sum = Logic.CalculateSum(payerReceipts, participantReceipts);
+                sumVector.Add(sum);
+            }
+            return sumVector;
+        }
     }
 }

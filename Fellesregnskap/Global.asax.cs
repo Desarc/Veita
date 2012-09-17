@@ -1,4 +1,5 @@
 ﻿using Fellesregnskap.Models;
+using Fellesregnskap.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

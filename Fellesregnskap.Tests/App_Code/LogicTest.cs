@@ -10,7 +10,7 @@ namespace Fellesregnskap.Tests.App_Code
     public class LogicTest
     {
         private List<Receipt> testReceipts1; //betalt av Stig
-        private List<Receipt> testReceipts2; //Stig har deltatt
+        private List<Receipt> testReceipts2; //Stig har deltatt på
         private List<Participant> testParticipants1;
         private List<Participant> testParticipants2;
         private List<Participant> testParticipants3;
@@ -20,7 +20,7 @@ namespace Fellesregnskap.Tests.App_Code
         {
             createTestData();
             var sum = Logic.CalculateSum(testReceipts1, testReceipts2);
-            Assert.AreEqual(sum, -140.0);
+            Assert.AreEqual(-130.0, sum);
            
             
         }

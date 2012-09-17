@@ -8,12 +8,18 @@ namespace Fellesregnskap.App_Code
 {
     public class Logic
     {
-        public static int tall;
-
-
-        public static int CalculateSum(List<Receipt> payerReceipts, List<Receipt> participantReceipts)
+        public static double CalculateSum(List<Receipt> payerReceipts, List<Receipt> participantReceipts)
         {
-            return 0;
+            double sum = 0.0;
+            foreach(Receipt receipt in payerReceipts)
+            {
+                sum -= receipt.price;
+            }
+            foreach (Receipt receipt in participantReceipts)
+            {
+                sum += receipt.price / receipt.participants.Count;
+            }
+            return sum;
         }
 
     }
