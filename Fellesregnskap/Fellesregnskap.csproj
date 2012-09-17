@@ -101,13 +101,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Logic.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Home\Deltager.cs" />
-    <Compile Include="Models\Home\Regnskap.cs" />
-    <Compile Include="Models\MongoAccessor.cs" />
+    <Compile Include="Models\Home\Participant.cs" />
+    <Compile Include="Models\Home\Receipt.cs" />
+    <Compile Include="App_Code\MongoAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +199,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\ParticipantCreated.cshtml" />
     <Content Include="Views\Home\_ParticipantsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
