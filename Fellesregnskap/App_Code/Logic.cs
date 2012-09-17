@@ -7,5 +7,6 @@ namespace Fellesregnskap.App_Code
 {
     public class Logic
     {
+        dummy
     }
 }
