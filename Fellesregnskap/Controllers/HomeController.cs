@@ -14,6 +14,7 @@ namespace Fellesregnskap.Controllers
     {
         public ActionResult Index()
         {
+           
             return View();
         }
 
