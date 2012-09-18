@@ -201,6 +201,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\_ParticipantsList.cshtml" />
     <Content Include="Views\Home\_ReceiptsList.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Home\AddParticipant.cshtml" />
+    <Content Include="Views\Home\AddReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

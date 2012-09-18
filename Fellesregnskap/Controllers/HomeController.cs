@@ -17,11 +17,21 @@ namespace Fellesregnskap.Controllers
             return View();
         }
 
+        public ActionResult AddParticipant()
+        {
+            return View();
+        }
+
+        public ActionResult AddReceipt()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Index(Participant participant)
+        public ActionResult AddParticipant(Participant participant)
         {
             MongoAccessor.AddParticipant(participant);
-            return RedirectToAction("Index");
+            return RedirectToAction("AddParticipant");
         }
 
         public PartialViewResult ParticipantsList()

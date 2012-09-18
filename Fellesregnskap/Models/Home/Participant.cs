@@ -10,6 +10,7 @@ namespace Fellesregnskap.Models.Home
     public class Participant
     {
         public ObjectId id { get; set; }
+        [Required]
         public String name { get; set; }
     }
 }
