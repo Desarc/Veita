@@ -11,8 +11,8 @@ namespace Fellesregnskap.Tests.App_Code
 {
     class TestData
     {
-        public List<Receipt> testReceipts1; //betalt av Stig
-        public List<Receipt> testReceipts2; //Stig har deltatt på
+        public List<Receipt> testReceipts1; //betalt av Arnulf
+        public List<Receipt> testReceipts2; //Arnulf har deltatt på
         public List<Participant> testParticipants1;
         public List<Participant> testParticipants2;
         public List<Participant> testParticipants3;
@@ -20,12 +20,12 @@ namespace Fellesregnskap.Tests.App_Code
 
         public void CreateTestData()
         {
-            var Stig = new Participant { name = "Stig" };
-            var Magnus = new Participant { name = "Magnus" };
-            var Jonas = new Participant { name = "Jonas" };
-            var Elisabeth = new Participant { name = "Elisabeth" };
-            var Monika = new Participant { name = "Monika" };
-            var Oyvin = new Participant { name = "Øyvin" };
+            var Stig = new Participant { name = "Arnulf" };
+            var Magnus = new Participant { name = "Dingo" };
+            var Jonas = new Participant { name = "Hodor" };
+            var Elisabeth = new Participant { name = "Annie" };
+            var Monika = new Participant { name = "Abed" };
+            var Oyvin = new Participant { name = "Yussuf" };
 
             testParticipants1 = new List<Participant>();
             testParticipants2 = new List<Participant>();
@@ -126,7 +126,26 @@ namespace Fellesregnskap.Tests.App_Code
 
         public void CleanUpDB()
         {
-            MongoAccessor.PurgeDB();
+            foreach (Participant participant in testParticipants1)
+            {
+                MongoAccessor.RemoveParticipant(participant.name);
+            }
+            foreach (Participant participant in testParticipants2)
+            {
+                MongoAccessor.RemoveParticipant(participant.name);
+            }
+            foreach (Participant participant in testParticipants3)
+            {
+                MongoAccessor.RemoveParticipant(participant.name);
+            }
+            foreach (Receipt receipt in testReceipts1)
+            {
+                MongoAccessor.RemoveReceipt(receipt.id);
+            }
+            foreach (Receipt receipt in testReceipts2)
+            {
+                MongoAccessor.RemoveReceipt(receipt.id);
+            }
         }
     }
 }
