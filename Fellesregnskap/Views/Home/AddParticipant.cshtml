@@ -1,0 +1,21 @@
+﻿@model  Fellesregnskap.Models.Home.Participant
+
+Existing participants:
+@Html.Action("ParticipantsList")
+
+@using (Html.BeginForm()) { 
+    @Html.ValidationSummary(true) 
+    <fieldset> 
+        <legend>Legg til deltager</legend> 
+        <div class="editor-label"> 
+            @Html.LabelFor(model => model.name) 
+        </div> 
+        <div class="editor-field"> 
+            @Html.TextBoxFor(model => model.name) 
+            @Html.ValidationMessageFor(model => model.name) 
+        </div> 
+        <p> 
+            <input type="submit" value="Send" /> 
+        </p> 
+    </fieldset> 
+}
