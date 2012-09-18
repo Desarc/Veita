@@ -2,14 +2,27 @@
 
 Receipts
 <table>
+    <tr>
+        <td>Dato</td>
+        <td>Beskrivelse</td>
+        <td>Pris</td>
+        <td>Betalt av</td>
+        <td>Deltakere</td>
+    </tr>
 @foreach (var item in Model)
 {
     <tr>
         <td>@Html.Raw(item.Date.Date.ToString())</td>
         <td>@Html.Raw(item.Description)</td>
         <td>@Html.Raw(item.Price.ToString())</td>
-
-
+        <td>@Html.Raw(item.Payer.Name)</td>
+        <td>
+            @foreach (var part in item.Participants)
+            {
+                @Html.Raw(part.Name)
+                @Html.Raw(" ")
+            }
+        </td>
     </tr>    
 }
 
