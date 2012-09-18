@@ -12,3 +12,10 @@ body {
 #main {
     padding: 30px 30px;
 }
+
+@media only screen and (max-width: 1140px)
+{
+    .page {
+        width: 100%;
+    }
+}

@@ -14,7 +14,7 @@
     <fieldset>
         <legend>Receipt</legend>
 
-        @Html.Partial("ParticipantSelecter", ViewBag.Participants as List<Fellesregnskap.Models.Common.Participant>)
+        @Html.Action("ParticipantSelecter", "Home")
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Price)

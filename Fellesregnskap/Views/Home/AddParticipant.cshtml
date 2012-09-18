@@ -1,7 +1,7 @@
 ﻿@model  Fellesregnskap.Models.Common.Participant
 
 Existing participants:
-@Html.Action("ParticipantsList")
+@Html.Action("ParticipantsList", "")
 
 @using (Html.BeginForm()) { 
     @Html.ValidationSummary(true) 

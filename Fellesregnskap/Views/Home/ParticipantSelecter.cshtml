@@ -1,9 +1,10 @@
-﻿@model List<Fellesregnskap.Models.Common.Participant>
+﻿@model Fellesregnskap.ViewModels.ParticipantsViewModel
 
-
-
-@foreach (var item in Model)
+@foreach (var participant in Model.Participants)
 {
-    <input type="radio" name="participant" value="@item.Id">@Html.Raw(item.Name)</input>    
+    @Html.Label(participant.Id, participant.Label)
+    @Html.RadioButtonFor(x => x.SelectedParticipantId, participant.Id, new { id = participant.Id })    
 }
 
+
+            

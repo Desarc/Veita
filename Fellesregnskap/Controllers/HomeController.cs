@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Fellesregnskap.Mappers;
 
 namespace Fellesregnskap.Controllers
 {
@@ -25,7 +26,6 @@ namespace Fellesregnskap.Controllers
         public ActionResult AddReceipt()
         {
             ViewBag.Errormessage = TempData["Errormessage"];
-            ViewBag.Participants = MongoAccessor.GetAllParticipants();
             return View();
         }
 
@@ -70,6 +70,10 @@ namespace Fellesregnskap.Controllers
             return PartialView("_ReceiptsList", receipts);
         }
 
-        
+        public PartialViewResult ParticipantSelecter()
+        {
+            var viewdata = ReceiptMapper.ModelToViewModel(MongoAccessor.GetAllParticipants());
+            return PartialView("ParticipantSelecter", viewdata);
+        }
     }
 }
