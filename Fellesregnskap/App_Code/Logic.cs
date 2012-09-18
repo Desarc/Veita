@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Fellesregnskap.Models.Home;
+using Fellesregnskap.Models.Common;
 
 namespace Fellesregnskap.App_Code
 {

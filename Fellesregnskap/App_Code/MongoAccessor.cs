@@ -1,4 +1,4 @@
-﻿using Fellesregnskap.Models.Home;
+﻿using Fellesregnskap.Models.Common;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

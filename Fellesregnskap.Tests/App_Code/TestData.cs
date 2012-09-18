@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fellesregnskap.Models.Home;
+using Fellesregnskap.Models.Common;
 using Fellesregnskap.App_Code;
 using MongoDB.Bson;
 
