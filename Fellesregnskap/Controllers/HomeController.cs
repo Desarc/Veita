@@ -26,7 +26,8 @@ namespace Fellesregnskap.Controllers
         public ActionResult AddReceipt()
         {
             ViewBag.Errormessage = TempData["Errormessage"];
-            return View();
+            var viewmodel = ParticipantMappers.ModelToViewModel(new Receipt(), MongoAccessor.GetAllParticipants());
+            return View(viewmodel);
         }
 
         [HttpPost]
@@ -70,10 +71,5 @@ namespace Fellesregnskap.Controllers
             return PartialView("_ReceiptsList", receipts);
         }
 
-        public PartialViewResult ParticipantSelecter()
-        {
-            var viewdata = ReceiptMapper.ModelToViewModel(MongoAccessor.GetAllParticipants());
-            return PartialView("ParticipantSelecter", viewdata);
-        }
     }
 }
