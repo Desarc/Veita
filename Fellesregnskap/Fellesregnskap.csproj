@@ -206,6 +206,7 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Home\AddParticipant.cshtml" />
     <Content Include="Views\Home\AddReceipt.cshtml" />
+    <Content Include="Views\Home\ParticipantSelecter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

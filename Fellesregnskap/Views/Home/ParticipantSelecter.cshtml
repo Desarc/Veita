@@ -1,0 +1,9 @@
+﻿@model List<Fellesregnskap.Models.Common.Participant>
+
+
+
+@foreach (var item in Model)
+{
+    <input type="radio" name="participant" value="@item.Id">@Html.Raw(item.Name)</input>    
+}
+

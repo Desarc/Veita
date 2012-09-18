@@ -25,6 +25,7 @@ namespace Fellesregnskap.Controllers
         public ActionResult AddReceipt()
         {
             ViewBag.Errormessage = TempData["Errormessage"];
+            ViewBag.Participants = MongoAccessor.GetAllParticipants();
             return View();
         }
 

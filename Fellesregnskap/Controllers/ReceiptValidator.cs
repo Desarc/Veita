@@ -11,7 +11,6 @@ namespace Fellesregnskap.Controllers
         public static bool Validate(Receipt receipt)
         {
             return receipt.Participants != null && receipt.Payer != null;
-
         }
     }
 }
