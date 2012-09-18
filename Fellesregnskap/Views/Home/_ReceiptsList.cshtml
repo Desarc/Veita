@@ -19,8 +19,7 @@ Receipts
         <td>
             @foreach (var part in item.Participants)
             {
-                @Html.Raw(part.Name)
-                @Html.Raw(" ")
+                @Html.Raw(part.Name + " ")
             }
         </td>
     </tr>    

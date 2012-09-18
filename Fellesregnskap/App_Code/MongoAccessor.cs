@@ -69,10 +69,10 @@ namespace Fellesregnskap.App_Code
             collection.Remove(query);
         }
 
-        public static void RemoveParticipant(String name)
+        public static void RemoveParticipant(String id)
         {
             var collection = database.GetCollection<Participant>("Participants");
-            var query = Query.EQ("Name", name);
+            var query = Query.EQ("_id", ObjectId.Parse(id));
             collection.Remove(query);
         }
 

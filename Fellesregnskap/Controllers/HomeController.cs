@@ -24,6 +24,7 @@ namespace Fellesregnskap.Controllers
 
         public ActionResult AddReceipt()
         {
+            ViewBag.Errormessage = TempData["Errormessage"];
             return View();
         }
 
@@ -31,6 +32,28 @@ namespace Fellesregnskap.Controllers
         public ActionResult AddParticipant(Participant participant)
         {
             MongoAccessor.AddParticipant(participant);
+            return RedirectToAction("AddParticipant");
+        }
+
+        [HttpPost]
+        public ActionResult AddReceipt(Receipt receipt)
+        {
+            if(ModelState.IsValid && ReceiptValidator.Validate(receipt))
+            {
+                MongoAccessor.AddReceipt(receipt);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Errormessage"] = "Noen felter var ikke gyldige";
+                return RedirectToAction("AddReceipt");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult RemoveParticipant(string id)
+        {
+            MongoAccessor.RemoveParticipant(id);
             return RedirectToAction("AddParticipant");
         }
 

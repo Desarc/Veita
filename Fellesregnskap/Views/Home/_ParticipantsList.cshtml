@@ -3,7 +3,7 @@
 <ul>
 @foreach (var item in Model)
 {
-    <li>@Html.Raw(item.Name)</li>    
+    <li>@Html.Raw(item.Name) (@Html.ActionLink("x", "RemoveParticipant", new { Id = item.Id }))</li>    
 }
 
 </ul>
