@@ -1,0 +1,16 @@
+﻿@model List<Fellesregnskap.Models.Home.Receipt>
+
+Receipts
+<table>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.Raw(item.date.Date.ToString())</td>
+        <td>@Html.Raw(item.description)</td>
+        <td>@Html.Raw(item.price.ToString())</td>
+
+
+    </tr>    
+}
+
+</table>
