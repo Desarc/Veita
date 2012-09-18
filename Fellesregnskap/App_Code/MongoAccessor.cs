@@ -123,7 +123,7 @@ namespace Fellesregnskap.App_Code
             PartCollection.RemoveAll();
         }
 
-        internal static void Connect()
+        public static void Connect()
         {
             var connectionstring = ConfigurationManager.AppSettings.Get("MONGOHQ_URL");
             database = MongoDatabase.Create(connectionstring);
