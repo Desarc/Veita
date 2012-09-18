@@ -13,11 +13,11 @@ namespace Fellesregnskap.App_Code
             double sum = 0.0;
             foreach(Receipt receipt in payerReceipts)
             {
-                sum -= receipt.price;
+                sum -= receipt.Price;
             }
             foreach (Receipt receipt in participantReceipts)
             {
-                sum += receipt.price / receipt.participants.Count;
+                sum += receipt.Price / receipt.Participants.Count;
             }
             return sum;
         }

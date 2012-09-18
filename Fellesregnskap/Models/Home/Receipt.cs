@@ -8,28 +8,28 @@ namespace Fellesregnskap.Models.Home
 {
     public class Receipt
     {
-        public ObjectId id { get; set; }
+        public ObjectId Id { get; set; }
 
         [Display(Name="Pris")]
         [Required(ErrorMessage = "{0} må være utfylt")]
-        public double price { get; set; }
+        public double Price { get; set; }
 
         [Display(Name = "Det gjelder")]
         [Required(ErrorMessage = "{0} må være utfylt")]
-        public String description { get; set; }
+        public String Description { get; set; }
 
         [Display(Name = "Dato")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "{0} må være utfylt")]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
 
         [Display(Name = "Måned")]
         [Required(ErrorMessage = "{0} må være utfylt")]
-        public int month { get; set; }
+        public int Month { get; set; }
 
-        public Participant payer { get; set; }
+        public Participant Payer { get; set; }
         
-        public List<Participant> participants { get; set; }
+        public List<Participant> Participants { get; set; }
 
 
     }

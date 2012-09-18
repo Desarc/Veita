@@ -20,12 +20,12 @@ namespace Fellesregnskap.Tests.App_Code
 
         public void CreateTestData()
         {
-            var Stig = new Participant { name = "Arnulf" };
-            var Magnus = new Participant { name = "Dingo" };
-            var Jonas = new Participant { name = "Hodor" };
-            var Elisabeth = new Participant { name = "Annie" };
-            var Monika = new Participant { name = "Abed" };
-            var Oyvin = new Participant { name = "Yussuf" };
+            var Stig = new Participant { Name = "Arnulf" };
+            var Magnus = new Participant { Name = "Dingo" };
+            var Jonas = new Participant { Name = "Hodor" };
+            var Elisabeth = new Participant { Name = "Annie" };
+            var Monika = new Participant { Name = "Abed" };
+            var Oyvin = new Participant { Name = "Yussuf" };
 
             testParticipants1 = new List<Participant>();
             testParticipants2 = new List<Participant>();
@@ -46,48 +46,48 @@ namespace Fellesregnskap.Tests.App_Code
 
             var middag1 = new Receipt
             {
-                date = DateTime.Now,
-                month = DateTime.Now.Month,
-                payer = Stig,
-                description = "test1",
-                price = 45.0,
-                participants = testParticipants1
+                Date = DateTime.Now,
+                Month = DateTime.Now.Month,
+                Payer = Stig,
+                Description = "test1",
+                Price = 45.0,
+                Participants = testParticipants1
             };
             var middag2 = new Receipt
             {
-                date = DateTime.Now,
-                month = DateTime.Now.Month,
-                payer = Stig,
-                description = "test2",
-                price = 85.0,
-                participants = testParticipants3
+                Date = DateTime.Now,
+                Month = DateTime.Now.Month,
+                Payer = Stig,
+                Description = "test2",
+                Price = 85.0,
+                Participants = testParticipants3
             };
             var middag3 = new Receipt
             {
-                date = DateTime.Now,
-                month = 14,
-                payer = Monika,
-                description = "test3",
-                price = 60.0,
-                participants = testParticipants1
+                Date = DateTime.Now,
+                Month = 14,
+                Payer = Monika,
+                Description = "test3",
+                Price = 60.0,
+                Participants = testParticipants1
             };
             var middag4 = new Receipt
             {
-                date = DateTime.Now,
-                month = DateTime.Now.Month,
-                payer = Elisabeth,
-                description = "test4",
-                price = 90.0,
-                participants = testParticipants1
+                Date = DateTime.Now,
+                Month = DateTime.Now.Month,
+                Payer = Elisabeth,
+                Description = "test4",
+                Price = 90.0,
+                Participants = testParticipants1
             };
             var middag5 = new Receipt
             {
-                date = DateTime.Now,
-                month = 14,
-                payer = Stig,
-                description = "test5",
-                price = 65.0,
-                participants = testParticipants3
+                Date = DateTime.Now,
+                Month = 14,
+                Payer = Stig,
+                Description = "test5",
+                Price = 65.0,
+                Participants = testParticipants3
             };
 
             testReceipts1.Add(middag1);
@@ -128,23 +128,23 @@ namespace Fellesregnskap.Tests.App_Code
         {
             foreach (Participant participant in testParticipants1)
             {
-                MongoAccessor.RemoveParticipant(participant.name);
+                MongoAccessor.RemoveParticipant(participant.Name);
             }
             foreach (Participant participant in testParticipants2)
             {
-                MongoAccessor.RemoveParticipant(participant.name);
+                MongoAccessor.RemoveParticipant(participant.Name);
             }
             foreach (Participant participant in testParticipants3)
             {
-                MongoAccessor.RemoveParticipant(participant.name);
+                MongoAccessor.RemoveParticipant(participant.Name);
             }
             foreach (Receipt receipt in testReceipts1)
             {
-                MongoAccessor.RemoveReceipt(receipt.id);
+                MongoAccessor.RemoveReceipt(receipt.Id);
             }
             foreach (Receipt receipt in testReceipts2)
             {
-                MongoAccessor.RemoveReceipt(receipt.id);
+                MongoAccessor.RemoveReceipt(receipt.Id);
             }
         }
     }

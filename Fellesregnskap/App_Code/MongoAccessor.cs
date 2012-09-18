@@ -17,33 +17,33 @@ namespace Fellesregnskap.App_Code
         {
             var RecCollection = database.GetCollection<Receipt>("Receipts");
             RecCollection.Insert(receipt);
-            AddParticipant(receipt.payer);
-            foreach(Participant part in receipt.participants)
+            AddParticipant(receipt.Payer);
+            foreach(Participant part in receipt.Participants)
             {
                 AddParticipant(part);
             }
-            return receipt.id; //id autogenereres av mongodb
+            return receipt.Id; //id autogenereres av mongodb
         }
 
         public static ObjectId AddParticipant(Participant participant)
         {
-            var existingPart = GetParticipant(participant.name);
+            var existingPart = GetParticipant(participant.Name);
             if (existingPart == null)
             {
                 var collection = database.GetCollection<Participant>("Participants");
                 collection.Insert(participant);
-                return participant.id; //id autogenereres av mongodb
+                return participant.Id; //id autogenereres av mongodb
             }
-            return existingPart.id;
+            return existingPart.Id;
         }
 
         public static void AddParticipantToReceipt(Participant participant, Receipt receipt)
         {
-            if (receipt.participants.Any(p => p.name == participant.name))
+            if (receipt.Participants.Any(p => p.Name == participant.Name))
             {
                 return;
             }
-            receipt.participants.Add(participant);
+            receipt.Participants.Add(participant);
             AddParticipant(participant);
             var collection = database.GetCollection<Receipt>("Receipts");
             collection.Save(receipt);
@@ -57,7 +57,7 @@ namespace Fellesregnskap.App_Code
 
         public static void RemoveParticipantFromReceipt(Participant participant, Receipt receipt)
         {
-            receipt.participants.Remove(participant);
+            receipt.Participants.Remove(participant);
             var collection = database.GetCollection<Receipt>("Receipts");
             collection.Save(receipt);
         }
@@ -106,13 +106,13 @@ namespace Fellesregnskap.App_Code
         public static List<Receipt> GetAllReceiptsForParticipantByMonth(Participant participant, int month)
         {
             var allReceipts = GetReceiptsByMonth(month);
-            return allReceipts.Where(receipt => receipt.participants.Any(p => p.name == participant.name)).ToList();
+            return allReceipts.Where(receipt => receipt.Participants.Any(p => p.Name == participant.Name)).ToList();
         }
 
         public static List<Receipt> GetAllReceiptsForPayerByMonth(Participant payer, int month)
         {
             var allReceipts = GetReceiptsByMonth(month);
-            return allReceipts.Where(receipt => receipt.payer.name == payer.name).ToList();
+            return allReceipts.Where(receipt => receipt.Payer.Name == payer.Name).ToList();
         }
 
         public static void PurgeDB()
