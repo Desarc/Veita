@@ -40,18 +40,12 @@ namespace Fellesregnskap.Controllers
             return PartialView("_ParticipantsList", participants);
         }
 
-        private List<double> CreateSumVector(int month)
+        public PartialViewResult ReceiptsList()
         {
-            var sumVector = new List<double>();
-            var participants = MongoAccessor.GetAllParticipants();
-            foreach (Participant participant in participants)
-            {
-                var payerReceipts = MongoAccessor.GetAllReceiptsForPayerByMonth(participant, month);
-                var participantReceipts = MongoAccessor.GetAllReceiptsForParticipantByMonth(participant, month);
-                var sum = Logic.CalculateSum(payerReceipts, participantReceipts);
-                sumVector.Add(sum);
-            }
-            return sumVector;
+            var receipts = MongoAccessor.GetReceiptsByMonth(DateTime.Now.Month, DateTime.Now.Year);
+            return PartialView("_ReceiptsList", receipts);
         }
+
+        
     }
 }

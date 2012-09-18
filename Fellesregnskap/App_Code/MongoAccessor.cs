@@ -72,14 +72,14 @@ namespace Fellesregnskap.App_Code
         public static void RemoveParticipant(String name)
         {
             var collection = database.GetCollection<Participant>("Participants");
-            var query = Query.EQ("name", name);
+            var query = Query.EQ("Name", name);
             collection.Remove(query);
         }
 
         public static Participant GetParticipant(String name)
         {
             var collection = database.GetCollection<Participant>("Participants");
-            var query = Query.EQ("name", name);
+            var query = Query.EQ("Name", name);
             return collection.FindOne(query);
         }
 
@@ -90,11 +90,11 @@ namespace Fellesregnskap.App_Code
             return collection.FindOne(query);
         }
 
-        public static List<Receipt> GetReceiptsByMonth(int month)
+        public static List<Receipt> GetReceiptsByMonth(int month, int year)
         {
             var collection = database.GetCollection<Receipt>("Receipts");
-            var query = Query.EQ("month", month);
-            return collection.Find(query).ToList();
+            var allReceipts = collection.FindAll();
+            return allReceipts.Where(receipt => receipt.Date.Year == year && receipt.Date.Month == month).ToList();
         }
 
         public static List<Participant> GetAllParticipants()
@@ -103,15 +103,15 @@ namespace Fellesregnskap.App_Code
             return collection.FindAll().ToList();
         }
 
-        public static List<Receipt> GetAllReceiptsForParticipantByMonth(Participant participant, int month)
+        public static List<Receipt> GetAllReceiptsForParticipantByMonth(Participant participant, int month, int year)
         {
-            var allReceipts = GetReceiptsByMonth(month);
+            var allReceipts = GetReceiptsByMonth(month, year);
             return allReceipts.Where(receipt => receipt.Participants.Any(p => p.Name == participant.Name)).ToList();
         }
 
-        public static List<Receipt> GetAllReceiptsForPayerByMonth(Participant payer, int month)
+        public static List<Receipt> GetAllReceiptsForPayerByMonth(Participant payer, int month, int year)
         {
-            var allReceipts = GetReceiptsByMonth(month);
+            var allReceipts = GetReceiptsByMonth(month, year);
             return allReceipts.Where(receipt => receipt.Payer.Name == payer.Name).ToList();
         }
 
