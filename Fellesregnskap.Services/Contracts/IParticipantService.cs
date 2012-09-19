@@ -6,16 +6,16 @@ using System.Text;
 
 namespace Fellesregnskap.Services
 {
-    interface IParticipantService
+    public interface IParticipantService
     {
         // Add
         void AddParticipant(Participant participant);
         
         // Select
-        Participant GetParticipant(String id);
-        IEnumerable<Participant> GetAllParticipant();
+        Participant GetParticipant(Guid id);
+        IEnumerable<Participant> GetAllParticipants();
 
         // Delete
-        void RemoveParticipant(String id);
+        void RemoveParticipant(Guid id);
     }
 }

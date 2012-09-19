@@ -1,5 +1,4 @@
-﻿using Fellesregnskap.Models.Common;
-using Fellesregnskap.App_Code;
+﻿using Fellesregnskap.App_Code;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -8,11 +7,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Fellesregnskap.Mappers;
+using Fellesregnskap.Services;
+using Fellesregnskap.Services.Contracts;
+using Fellesregnskap.Services.Models;
 
 namespace Fellesregnskap.Controllers
 {
     public class HomeController : Controller
     {
+        IParticipantService _participantservice;
+        IReceiptService _receiptService;
+        
+        public HomeController() : this(new ParticipantService(), new ReceiptService()) { }
+
+        public HomeController(IParticipantService participants, IReceiptService receipts)
+        {
+            _participantservice = participants;
+            _receiptService = receipts;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -26,14 +39,14 @@ namespace Fellesregnskap.Controllers
         public ActionResult AddReceipt()
         {
             ViewBag.Errormessage = TempData["Errormessage"];
-            var viewmodel = ParticipantMappers.ModelToViewModel(new Receipt(), MongoAccessor.GetAllParticipants());
+            var viewmodel = ParticipantMappers.ModelToViewModel(new Receipt(), _participantservice.GetAllParticipants());
             return View(viewmodel);
         }
 
         [HttpPost]
         public ActionResult AddParticipant(Participant participant)
         {
-            MongoAccessor.AddParticipant(participant);
+            _participantservice.AddParticipant(participant);
             return RedirectToAction("AddParticipant");
         }
 
@@ -42,7 +55,7 @@ namespace Fellesregnskap.Controllers
         {
             if(ModelState.IsValid && ReceiptValidator.Validate(receipt))
             {
-                MongoAccessor.AddReceipt(receipt);
+                _receiptService.AddReceipt(receipt);
                 return RedirectToAction("Index");
             }
             else
@@ -53,29 +66,29 @@ namespace Fellesregnskap.Controllers
         }
 
         [HttpGet]
-        public ActionResult RemoveParticipant(string participantId)
+        public ActionResult RemoveParticipant(Guid Id)
         {
-            MongoAccessor.RemoveParticipant(participantId);
+            _participantservice.RemoveParticipant(Id);
             return RedirectToAction("AddParticipant");
         }
 
         [HttpGet]
-        public ActionResult RemoveReceipt(string receiptId)
+        public ActionResult RemoveReceipt(Guid receiptId)
         {
-            MongoAccessor.RemoveReceipt(receiptId);
+            _receiptService.RemoveReceipt(receiptId);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult RemoveParticipantFromReceipt(string participantId, string receiptId)
+        public ActionResult RemoveParticipantFromReceipt(Guid participantId, Guid receiptId)
         {
-            MongoAccessor.RemoveParticipantFromReceipt(participantId, receiptId);
+            _receiptService.RemoveParticipantFromReceipt(participantId, receiptId);
             return RedirectToAction("Index");
         }
 
         public PartialViewResult ParticipantsList()
         {
-            var participants = MongoAccessor.GetAllParticipants();
+            var participants = _participantservice.GetAllParticipants();
             return PartialView("_ParticipantsList", participants);
         }
 
@@ -86,7 +99,7 @@ namespace Fellesregnskap.Controllers
 
         public PartialViewResult ReceiptsListCurrentMonth()
         {
-            var receipts = MongoAccessor.GetReceiptsByMonth(DateTime.Now.Month, DateTime.Now.Year);
+            var receipts = _receiptService.GetReceiptsFromMonth(DateTime.Now.Month, DateTime.Now.Year);
             return PartialView("_ReceiptsList", receipts);
         }
 
@@ -178,23 +191,23 @@ namespace Fellesregnskap.Controllers
 
             foreach (Participant participant in testParticipants1)
             {
-                MongoAccessor.AddParticipant(participant);
+                _participantservice.AddParticipant(participant);
             }
             foreach (Participant participant in testParticipants2)
             {
-                MongoAccessor.AddParticipant(participant);
+                _participantservice.AddParticipant(participant);
             }
             foreach (Participant participant in testParticipants3)
             {
-                MongoAccessor.AddParticipant(participant);
+                _participantservice.AddParticipant(participant);
             }
             foreach (Receipt receipt in testReceipts1)
             {
-                MongoAccessor.AddReceipt(receipt);
+                _receiptService.AddReceipt(receipt);
             }
             foreach (Receipt receipt in testReceipts2)
             {
-                MongoAccessor.AddReceipt(receipt);
+                _receiptService.AddReceipt(receipt);
             }
         }
 

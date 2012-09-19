@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,13 @@ namespace Fellesregnskap.Services.Models
 {
    public class Participant
     {
-        public String Id { get; set; }
+       public Participant()
+       {
+           Id = new Guid();
+       }
+
+       [BsonId]
+        public Guid Id { get; set; }
         public String Name { get; set; }
     }
 }

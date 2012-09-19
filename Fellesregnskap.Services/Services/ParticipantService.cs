@@ -31,20 +31,20 @@ namespace Fellesregnskap.Services
             }
         }
 
-        public Participant GetParticipant(string id)
+        public Participant GetParticipant(Guid id)
         {
-            var query = Query.EQ("_id", ObjectId.Parse(id));
+            var query = Query.EQ("_id", id);
             return _collection.FindOne(query);
         }
 
-        public IEnumerable<Participant> GetAllParticipant()
+        public IEnumerable<Participant> GetAllParticipants()
         {
-            return _collection.FindAll().AsEnumerable();
+            return _collection.FindAll().ToList();
         }
 
-        public void RemoveParticipant(string id)
+        public void RemoveParticipant(Guid id)
         {
-            var query = Query.EQ("_id", ObjectId.Parse(id));
+            var query = Query.EQ("_id", id);
             _collection.Remove(query);
         }
         

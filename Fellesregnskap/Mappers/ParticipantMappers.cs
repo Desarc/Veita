@@ -1,4 +1,4 @@
-﻿using Fellesregnskap.Models.Common;
+﻿using Fellesregnskap.Services.Models;
 using Fellesregnskap.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace Fellesregnskap.Mappers
 {
     public class ParticipantMappers
     {
-        public static ReceiptViewModel ModelToViewModel(Receipt receipt, List<Participant> list)
+        public static ReceiptViewModel ModelToViewModel(Receipt receipt, IEnumerable<Participant> list)
         {
             return new ReceiptViewModel
             {
@@ -18,7 +18,7 @@ namespace Fellesregnskap.Mappers
                 Id = receipt.Id.ToString(),
                 Price = receipt.Price,
                 Payer = new ParticipantViewModel (),
-                Participants = list.Select(a => new ParticipantViewModel { Id = a.Id.ToString(), Label = a.Name }).ToList()
+                Participants = list.Select(a => new ParticipantViewModel { Id = a.Id.ToString(), Name = a.Name }).ToList()
             };
         }
     }

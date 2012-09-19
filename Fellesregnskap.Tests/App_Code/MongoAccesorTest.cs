@@ -4,6 +4,7 @@ using Fellesregnskap.App_Code;
 
 namespace Fellesregnskap.Tests.App_Code
 {
+    /*
     [TestClass]
     public class MongoAccesorTest
     {
@@ -59,4 +60,6 @@ namespace Fellesregnskap.Tests.App_Code
             Assert.AreEqual(0, receipts3.Count);
         }
     }
+     * */
 }
+

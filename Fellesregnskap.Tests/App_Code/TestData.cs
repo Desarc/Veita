@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fellesregnskap.Models.Common;
 using Fellesregnskap.App_Code;
 using MongoDB.Bson;
 
 namespace Fellesregnskap.Tests.App_Code
 {
+    /*
     class TestData
     {
         public List<Receipt> testReceipts1; //betalt av Arnulf
@@ -126,6 +126,7 @@ namespace Fellesregnskap.Tests.App_Code
 
         public void CleanUpDB()
         {
+            
             foreach (Participant participant in testParticipants1)
             {
                 MongoAccessor.RemoveParticipant(participant.Name);
@@ -147,5 +148,5 @@ namespace Fellesregnskap.Tests.App_Code
                 MongoAccessor.RemoveReceipt(receipt.Id.ToString());
             }
         }
-    }
+    }*/
 }

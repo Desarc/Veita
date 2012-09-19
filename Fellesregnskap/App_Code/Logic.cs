@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Fellesregnskap.Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Fellesregnskap.Models.Common;
 
 namespace Fellesregnskap.App_Code
 {

@@ -8,6 +8,6 @@ namespace Fellesregnskap.ViewModels
     public class ParticipantViewModel
     {
         public string Id { get; set; }
-        public string Label { get; set; }
+        public string Name { get; set; }
     }
 }

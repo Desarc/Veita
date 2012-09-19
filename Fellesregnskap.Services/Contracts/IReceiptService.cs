@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace Fellesregnskap.Services.Contracts
 {
-    interface IReceiptService
+    public interface IReceiptService
     {
         // Add
         void AddReceipt(Receipt receipt);
         void AddParticipantToReceipt(Receipt receipt, Participant participant);
 
         // Select
-        Receipt GetReceipt(String id);
+        Receipt GetReceipt(Guid id);
         IEnumerable<Receipt> GetAllReceipts();
         IEnumerable<Receipt> GetReceiptsFromMonth(int month, int year);
         
         // Delete
-        void RemoveReceipt(String id);
-        void RemoveParticipantFromReceipt(String id);
+        void RemoveReceipt(Guid id);
+        void RemoveParticipantFromReceipt(Guid participantid, Guid receiptid);
     }
 }

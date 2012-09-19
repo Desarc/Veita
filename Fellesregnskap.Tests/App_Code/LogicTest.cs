@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fellesregnskap.Models.Common;
-using Fellesregnskap.App_Code;
 
 namespace Fellesregnskap.Tests.App_Code
 {
-    [TestClass]
+    /*[TestClass]
     public class LogicTest
     {
 
@@ -20,5 +18,5 @@ namespace Fellesregnskap.Tests.App_Code
            
             
         }
-    }
+    }*/
 }

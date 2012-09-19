@@ -65,9 +65,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -108,11 +105,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\ParticipantMappers.cs" />
-    <Compile Include="Models\Common\Participant.cs" />
-    <Compile Include="Models\Common\Receipt.cs" />
-    <Compile Include="App_Code\MongoAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ParticipantBalance.cs" />
+    <Compile Include="ViewModels\ParticipantBalanceViewModel.cs" />
     <Compile Include="ViewModels\ParticipantViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
   </ItemGroup>
@@ -209,10 +203,14 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Home\AddParticipant.cshtml" />
     <Content Include="Views\Home\AddReceipt.cshtml" />
-    <Content Include="Views\Home\ParticipantSelecter.cshtml" />
-    <Content Include="Views\Home\_ParticipantsListDisplay.cshtml" />
+    <Content Include="Views\Home\_ParticipantSumVector.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Fellesregnskap.Services\Fellesregnskap.Services.csproj">
+      <Project>{fa271870-ed99-464f-801d-1c5c3d962dca}</Project>
+      <Name>Fellesregnskap.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
