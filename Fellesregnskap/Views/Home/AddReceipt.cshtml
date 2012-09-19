@@ -1,4 +1,4 @@
-﻿@model Fellesregnskap.Models.Common.Receipt
+﻿@model Fellesregnskap.ViewModels.ReceiptViewModel
 
 @{
     ViewBag.Title = "Legg til regning";
@@ -14,7 +14,11 @@
     <fieldset>
         <legend>Receipt</legend>
 
-        @Html.Partial("ParticipantSelecter", ViewBag.Participants as List<Fellesregnskap.Models.Common.Participant>)
+        @foreach (var participant in Model.Participants)
+        {
+            @Html.Label(participant.Id, participant.Label)
+            @Html.RadioButtonFor(x => x.SelectedParticipantId, participant.Id, new { id = participant.Id })    
+        }
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Price)
@@ -38,14 +42,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Date)
             @Html.ValidationMessageFor(model => model.Date)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Month)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Month)
-            @Html.ValidationMessageFor(model => model.Month)
         </div>
 
         <p>

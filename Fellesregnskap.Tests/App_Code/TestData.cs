@@ -140,11 +140,11 @@ namespace Fellesregnskap.Tests.App_Code
             }
             foreach (Receipt receipt in testReceipts1)
             {
-                MongoAccessor.RemoveReceipt(receipt.Id);
+                MongoAccessor.RemoveReceipt(receipt.Id.ToString());
             }
             foreach (Receipt receipt in testReceipts2)
             {
-                MongoAccessor.RemoveReceipt(receipt.Id);
+                MongoAccessor.RemoveReceipt(receipt.Id.ToString());
             }
         }
     }

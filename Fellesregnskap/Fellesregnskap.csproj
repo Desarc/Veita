@@ -107,11 +107,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\ParticipantMappers.cs" />
     <Compile Include="Models\Common\Participant.cs" />
     <Compile Include="Models\Common\Receipt.cs" />
     <Compile Include="App_Code\MongoAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ParticipantBalance.cs" />
+    <Compile Include="ViewModels\ParticipantViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -207,6 +210,7 @@
     <Content Include="Views\Home\AddParticipant.cshtml" />
     <Content Include="Views\Home\AddReceipt.cshtml" />
     <Content Include="Views\Home\ParticipantSelecter.cshtml" />
+    <Content Include="Views\Home\_ParticipantsListDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
