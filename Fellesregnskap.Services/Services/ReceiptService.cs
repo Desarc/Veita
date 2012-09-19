@@ -1,6 +1,7 @@
 ﻿using Fellesregnskap.Services.Contracts;
 using Fellesregnskap.Services.Models;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,11 @@ namespace Fellesregnskap.Services
 
         public void AddParticipantToReceipt(Receipt receipt, Participant participant)
         {
-            throw new NotImplementedException();
+            if (!receipt.Participants.Exists(p => p.Name == participant.Name))
+            {
+                receipt.Participants.Add(participant);
+                _collection.Save(receipt);
+            }
         }
 
         public Receipt GetReceipt(Guid id)
@@ -45,24 +50,20 @@ namespace Fellesregnskap.Services
 
         public IEnumerable<Receipt> GetReceiptsFromMonth(int month, int year)
         {
-
             var allReceipts = _collection.FindAll();
             return allReceipts.Where(receipt => receipt.Date.Year == year && receipt.Date.Month == month).ToList();
-            /*
-            return _collection
-                .AsQueryable<Receipt>()
-                .Where(receipt => receipt.Date.Year == year && receipt.Date.Month == month)
-                .ToList();*/
         }
 
         public void RemoveReceipt(Guid id)
         {
-            throw new NotImplementedException();
+            _collection.Remove(Query.EQ("_id", id));
         }
 
         public void RemoveParticipantFromReceipt(Guid participantid, Guid receiptid)
         {
-            throw new NotImplementedException();
+            var receipt = _collection.FindOneById(receiptid);
+            receipt.Participants.RemoveAll(p => p.Id == participantid);
+            _collection.Save(receipt);
         }
     }
 

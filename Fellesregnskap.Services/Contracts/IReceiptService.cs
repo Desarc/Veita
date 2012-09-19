@@ -11,7 +11,10 @@ namespace Fellesregnskap.Services.Contracts
     {
         // Add
         void AddReceipt(Receipt receipt);
+
+        // Update
         void AddParticipantToReceipt(Receipt receipt, Participant participant);
+        void RemoveParticipantFromReceipt(Guid participantid, Guid receiptid);
 
         // Select
         Receipt GetReceipt(Guid id);
@@ -20,6 +23,5 @@ namespace Fellesregnskap.Services.Contracts
         
         // Delete
         void RemoveReceipt(Guid id);
-        void RemoveParticipantFromReceipt(Guid participantid, Guid receiptid);
     }
 }
