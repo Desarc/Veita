@@ -55,17 +55,20 @@ namespace Fellesregnskap.App_Code
             collection.Save(receipt);
         }
 
-        public static void RemoveParticipantFromReceipt(Participant participant, Receipt receipt)
+        public static void RemoveParticipantFromReceipt(string participantId, string receiptId)
         {
-            receipt.Participants.Remove(participant);
             var collection = database.GetCollection<Receipt>("Receipts");
+            var query = Query.EQ("_id", ObjectId.Parse(receiptId));
+            var receipt = collection.FindOne(query);
+            var participant = receipt.Participants.Find(p => p.Id == ObjectId.Parse(participantId));
+            receipt.Participants.Remove(participant);
             collection.Save(receipt);
         }
 
-        public static void RemoveReceipt(ObjectId receiptId)
+        public static void RemoveReceipt(string receiptId)
         {
             var collection = database.GetCollection<Receipt>("Receipts");
-            var query = Query.EQ("_id", receiptId);
+            var query = Query.EQ("_id", ObjectId.Parse(receiptId));
             collection.Remove(query);
         }
 

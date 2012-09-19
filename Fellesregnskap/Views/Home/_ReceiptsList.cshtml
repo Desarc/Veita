@@ -12,15 +12,18 @@ Receipts
 @foreach (var item in Model)
 {
     <tr>
-        <td>@Html.Raw(item.Date.Date.ToString())</td>
+        <td>(@Html.ActionLink("x", "RemoveReceipt", new { receiptId = item.Id }))</td>
+        <td>@Html.Raw(item.Date.Day + "/" + item.Date.Month)</td>
         <td>@Html.Raw(item.Description)</td>
         <td>@Html.Raw(item.Price.ToString())</td>
         <td>@Html.Raw(item.Payer.Name)</td>
         <td>
-            @foreach (var part in item.Participants)
-            {
-                @Html.Raw(part.Name + " ")
-            }
+        <ul>
+        @foreach (var part in item.Participants)
+        {
+            <li>@Html.Raw(part.Name) (@Html.ActionLink("x", "RemoveParticipantFromReceipt", new { participantId = part.Id, receiptId = item.Id }))</li>    
+        }
+        </ul>
         </td>
     </tr>    
 }

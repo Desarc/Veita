@@ -210,6 +210,7 @@
     <Content Include="Views\Home\AddParticipant.cshtml" />
     <Content Include="Views\Home\AddReceipt.cshtml" />
     <Content Include="Views\Home\ParticipantSelecter.cshtml" />
+    <Content Include="Views\Home\_ParticipantsListDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

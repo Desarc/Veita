@@ -1,0 +1,12 @@
+﻿@model List<Fellesregnskap.ViewModels.ParticipantBalanceViewModel>
+
+<table>
+    @foreach (var balance in Model)
+    {
+        <tr>
+            <td>@Html.Raw(balance.Participant.Name)</td>
+            <td>@html.Raw(balance.Balance)</td>
+        </tr>
+    }
+    
+</table>

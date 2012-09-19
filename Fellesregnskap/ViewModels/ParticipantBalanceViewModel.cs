@@ -7,7 +7,7 @@ using Fellesregnskap.App_Code;
 
 namespace Fellesregnskap.ViewModels
 {
-    public class ParticipantBalance
+    public class ParticipantBalanceViewModel
     {
         public double Balance { get; set; }
         public Participant Participant { get; set; }
