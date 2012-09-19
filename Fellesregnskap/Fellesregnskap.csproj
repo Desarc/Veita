@@ -208,9 +208,7 @@
     <Content Include="Views\Home\AddReceipt.cshtml" />
     <Content Include="Views\Home\ParticipantSelecter.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
